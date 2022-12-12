@@ -1,0 +1,21 @@
+repos:
+ - repo: https://github.com/pre-commit/pre-commit-hooks
+   rev: v2.3.0
+   hooks:
+   -   id: check-yaml
+   -   id: end-of-file-fixer
+   -   id: trailing-whitespace
+ - repo: https://github.com/psf/black
+   rev: '22.3.0'
+   hooks:
+   -   id: black
+   # This is a custom fork of the dotenv-linter which does not assert that assignments are unquoted (i.e. dont use ""), since we make use of this explicitly
+ - repo: https://github.com/ITISFoundation/dotenv-linter.git
+   rev: 0.2.0  # Use the ref you want to point at
+   hooks:
+     - id: dotenv-linter
+       files: '^(.*\.config)|(.*\.env)$'
+       name: dotenv-linter
+       entry: dotenv-linter
+       language: python
+       types: [text]
